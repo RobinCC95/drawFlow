@@ -1,27 +1,34 @@
 <template>
   <div id="app">
-    <GraficarNodos></GraficarNodos>
+    <HeaderPag></HeaderPag>
+    <div class="container altura">
+      <GraficarNodos></GraficarNodos>
+    </div>
+    <FooterPag></FooterPag>
   </div>
 </template>
 
 <script>
 import GraficarNodos from "./components/GraficarNodos.vue";
+import M from "materialize-css";
+import FooterPag from "./components/template/FooterPag.vue";
+import HeaderPag from "./components/template/HeaderPag.vue";
 
 export default {
   name: "App",
+  mounted() {
+    M.AutoInit();
+  },
   components: {
     GraficarNodos,
+    FooterPag,
+    HeaderPag,
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.altura {
+  height: 360px;
 }
 </style>

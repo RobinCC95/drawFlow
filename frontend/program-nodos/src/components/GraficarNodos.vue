@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Drawflow from '../../node_modules/drawflow/dist/drawflow.js';
+//import Drawflow from '../../node_modules/drawflow/dist/drawflow.js';
 
 export default {
     name: 'GraficarNodos',
@@ -26,9 +26,9 @@ export default {
             this.contador++;
         },
         iniciarGrafica(){
-            var id = document.getElementById("drawflow");
-            const editor = new Drawflow(id);
-            editor.start();
+            // var id = document.getElementById("drawflow");
+            // const editor = new Drawflow(id);
+            // editor.start();
         },
     },
 }
