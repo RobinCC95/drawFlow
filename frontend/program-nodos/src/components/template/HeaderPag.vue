@@ -4,9 +4,9 @@
       <div class="nav-wrapper #0d47a1 blue darken-4">
         <a href="#" class="brand-logo">NodeDrawProgram</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Aprender a programar</a></li>
-          <li><a href="badges.html">Cargar scripts</a></li>
-          <li><a href="collapsible.html">Usuario</a></li>
+          <li><a href="#/graficar">Aprender a programar</a></li>
+          <li><a href="#/listar">Cargar scripts</a></li>
+          <li><a href="#/listar">Usuario</a></li>
         </ul>
       </div>
     </nav>
@@ -15,6 +15,6 @@
 
 <script>
 export default{
-  name: 'FooterPag',
+  name: 'HeaderPag',
 }
 </script>

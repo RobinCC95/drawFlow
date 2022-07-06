@@ -12,7 +12,7 @@
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">Repositorio github</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Documentacion</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Pruebas</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#/about">Acerca de</a></li>
                 </ul>
               </div>
             </div>
