@@ -1,14 +1,13 @@
 <template>
     <div >
         <h1>graficar nodos</h1>
-        <div id="drawflow"></div>
+        <div id="drawflow" class="#5e35b1 deep-purple darken-1">aqui</div>
         <button @click="iniciarGrafica">iniciarGrafica</button>
     </div>
 </template>
 
 <script>
-//import Drawflow from '../../node_modules/drawflow/dist/drawflow.js';
-
+import Drawflow  from 'drawflow';
 export default {
     name: 'GraficarNodos',
     data() {
@@ -26,9 +25,11 @@ export default {
             this.contador++;
         },
         iniciarGrafica(){
-            // var id = document.getElementById("drawflow");
-            // const editor = new Drawflow(id);
-            // editor.start();
+            
+            var id = document.getElementById("drawflow");
+            const editor = new Drawflow(id);
+            console.log(editor);
+            editor.start();
         },
     },
 }

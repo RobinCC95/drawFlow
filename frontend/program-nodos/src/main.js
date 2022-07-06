@@ -3,9 +3,11 @@ import App from './App.vue'
 import 'materialize-css/dist/css/materialize.min.css'
 import 'material-design-icons/iconfont/material-icons.css'
 import router from './router'
-//import Drawflow from 'drawflow'
-//import styleDrawflow from 'drawflow/dist/drawflow.min.css'
-//var Drawflow = require('drawflow')
-//var styleDrawflow = require('drawflow/dist/drawflow.min.css')
+import 'drawflow/dist/drawflow.min.css'
+import 'drawflow/dist/drawflow.min.js'
 
-createApp(App).use(router).mount('#app')
+// import Drawflow from 'drawflow'
+import styleDrawflow from 'drawflow/dist/drawflow.min.css'
+
+createApp(App).use(router, { style: styleDrawflow }).mount('#app')
+//createApp(App).use(router).mount('#app')
