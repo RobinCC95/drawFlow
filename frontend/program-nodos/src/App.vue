@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <hello-world></hello-world>
+    <GraficarNodos></GraficarNodos>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GraficarNodos from "./components/GraficarNodos.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    GraficarNodos,
+  },
+};
 </script>
 
 <style>
