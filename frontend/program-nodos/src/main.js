@@ -11,4 +11,3 @@ import styleDrawflow from 'drawflow/dist/drawflow.min.css'
 // import { style } from '../dist/drawflow.style';
 createApp(App).use(router, { style: styleDrawflow }).mount('#app')
 //createApp(App).use(router).mount('#app')
-
