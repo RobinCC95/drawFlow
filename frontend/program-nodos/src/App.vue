@@ -3,9 +3,8 @@
     <HeaderPag></HeaderPag>
     <div class="container">
       <!-- <div id="drawflow" class="#5e35b1 deep-purple darken-1 "></div>-->
-
-      
-      <!-- <div class="row">
+    
+      <div class="row">
         <div class="col s2">
           <div
             class="drag-drawflow"
@@ -46,9 +45,7 @@
           <i class="fas fa-search-plus" onclick="editor.zoom_in()"></i>
         </div>
         </div>
-      </div> -->
-
- 
+      </div>
 
       <!--<RouterView/>-->
     </div>
@@ -56,7 +53,7 @@
   </div>
 </template>
 
-<!-- <script>
+<script>
 import FooterPag from "./components/template/FooterPag.vue";
 import HeaderPag from "./components/template/HeaderPag.vue";
 var Drawflow = require("drawflow");
@@ -257,6 +254,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .altura {
   height: 410px;
@@ -267,4 +265,4 @@ export default {
   width: 100%;
   height: 800px;
 }
-</style> -->
+</style>
