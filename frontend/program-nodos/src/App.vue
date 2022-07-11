@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <HeaderPag></HeaderPag>
-    <div class="container">
-      <!-- <div id="drawflow" class="#5e35b1 deep-purple darken-1 "></div>-->
-    
-      <div class="row">
-        <div class="col s2">
+    <!-- <div class="container altura"> -->
+    <div class="row">
+      <div class="col s12">
+      <div class="wrapper">
+        <div class="column">
           <div
             class="drag-drawflow"
             draggable="true"
@@ -14,207 +14,100 @@
           >
             <i class="fab fa-facebook"></i><span> Facebook</span>
           </div>
+        </div>
 
-          <div
-            class="drag-drawflow"
-            draggable="true"
-            ondragstart="drag(event)"
-            data-node="slack"
-          >
-            <i class="fab fa-slack"></i><span> Slack recive message</span>
+        <div class="col-right">
+          <div class="menu">
+            <ul>
+              <li>programa 1</li>
+              <li>programa 2</li>
+            </ul>
           </div>
         </div>
-        <div class="col s10 #c5cae9 indigo lighten-4">
-          <div
-            id="drawflow"
-            ondrop="drop(event)"
-            ondragover="allowDrop(event)"
-          ></div>
-
-          <div class="btn-export" onclick="Swal.fire({ title: 'Export',
-        html: '<pre><code>'+JSON.stringify(editor.export(), null,4)+'</code></pre>'
-        })">Export</div>
-        <div class="btn-clear" onclick="clearModuleSelected()">Clear</div>
-        <div class="btn-lock">
-          <i id="lock" class="fas fa-lock" onclick="editor.editor_mode='fixed'; changeMode('lock');"></i>
-          <i id="unlock" class="fas fa-lock-open" onclick="editor.editor_mode='edit'; changeMode('unlock');" style="display:none;"></i>
-        </div>
-        <div class="bar-zoom">
-          <i class="fas fa-search-minus" onclick="editor.zoom_out()"></i>
-          <i class="fas fa-search" onclick="editor.zoom_reset()"></i>
-          <i class="fas fa-search-plus" onclick="editor.zoom_in()"></i>
-        </div>
-        </div>
+        <div
+          id="drawflow"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        ></div>
       </div>
-
-      <!--<RouterView/>-->
     </div>
-    <FooterPag></FooterPag>
+    </div>
+    <div class="col s4 center">
+      <a class="btn-floating pulse"><i class="material-icons">save</i></a>
+      <a class="btn-floating pulse"><i class="material-icons">delete</i></a>
+    </div>
   </div>
+  <!-- <RouterView/> -->
+  <FooterPag></FooterPag>
+  <!-- </div> -->
 </template>
 
 <script>
 import FooterPag from "./components/template/FooterPag.vue";
 import HeaderPag from "./components/template/HeaderPag.vue";
 var Drawflow = require("drawflow");
+// var mobile_item_selec = '';
 export default {
   name: "App",
   mounted() {
-    // var Drawflow = require("drawflow");
     var id = document.getElementById("drawflow");
     const editor = new Drawflow(id);
     editor.reroute = true;
+
     const dataToImport = {
       drawflow: {
         Home: {
           data: {
             1: {
               id: 1,
-              name: "welcome",
+              name: "for",
               data: {},
-              class: "welcome",
-              html: '\n <div class = "row"> <div class="col s4 ">welcome 1</div></div>\n',
+              class: "for",
+              html: `<div class="for">for</div>`,
               typenode: false,
-              inputs: {
-                input_1: {
-                  connections: [{ node: "3", input: "output_1" }],
-                },
-              },
               outputs: {
-                output_1: {
-                  connections: [{ node: "2", output: "input_1" }],
+                outputs_1: {
+                  connections: [
+                    {
+                      node: 2,
+                      output: "input_1",
+                    },
+                  ],
                 },
               },
+              inputs: {},
               pos_x: 50,
               pos_y: 50,
             },
             2: {
               id: 2,
-              name: "slack",
+              name: "numero",
               data: {},
-              class: "slack",
-              html: '\n <div class = "row"> <div class="col s4 ">slak 2</div></div>\n',
+              class: "numero",
+              html: `<div class="numero">numero</div>`,
               typenode: false,
               inputs: {
-                input_1: { connections: [{ node: "1", input: "output_1" }] },
-              },
-              outputs: {
-                output_1: {
-                  connections: [{ node: "3", output: "input_1" }],
+                inputs_1: {
+                  connections: [
+                    {
+                      node: 1,
+                      input: "output_1",
+                    },
+                  ],
                 },
               },
-              pos_x: 600,
+              outputs: {},
+              pos_x: 300,
               pos_y: 50,
-            },
-            3: {
-              id: 3,
-              name: "telegram",
-              data: { channel: "channel_2" },
-              class: "telegram",
-              html: '\n <div class = "row"> <div class="col s4 ">telegram 3</div></div>\n',
-              typenode: false,
-              inputs: {
-                input_1: { connections: [{ node: "2", input: "output_1" }] },
-              },
-              outputs: {
-                output_1: {
-                  connections: [{ node: "1", output: "input_1" }],
-                },
-              },
-              pos_x: 150,
-              pos_y: 400,
             },
           },
         },
       },
     };
+
     editor.start();
     editor.import(dataToImport);
 
-    var elements = document.getElementsByClassName("drag-drawflow");
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].addEventListener("touchend", drop, false);
-      elements[i].addEventListener("touchmove", positionMobile, false);
-      elements[i].addEventListener("touchstart", drag, false);
-    }
-    var mobile_item_selec = "";
-    var mobile_last_move = null;
-
-    function positionMobile(ev) {
-      mobile_last_move = ev;
-    }
-
-    function drag(ev) {
-      if (ev.type === "touchstart") {
-        mobile_item_selec = ev.target
-          .closest(".drag-drawflow")
-          .getAttribute("data-node");
-      } else {
-        ev.dataTransfer.setData("node", ev.target.getAttribute("data-node"));
-      }
-    }
-    
-    function drop(ev) {
-      if (ev.type === "touchend") {
-        var parentdrawflow = document
-          .elementFromPoint(
-            mobile_last_move.touches[0].clientX,
-            mobile_last_move.touches[0].clientY
-          )
-          .closest("#drawflow");
-        if (parentdrawflow != null) {
-          addNodeToDrawFlow(
-            mobile_item_selec,
-            mobile_last_move.touches[0].clientX,
-            mobile_last_move.touches[0].clientY
-          );
-        }
-        mobile_item_selec = "";
-      } else {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("node");
-        addNodeToDrawFlow(data, ev.clientX, ev.clientY);
-      }
-    }
-
-    function addNodeToDrawFlow(name, pos_x, pos_y) {
-      if (editor.editor_mode === "fixed") {
-        return false;
-      }
-      pos_x =
-        pos_x *
-          (editor.precanvas.clientWidth /
-            (editor.precanvas.clientWidth * editor.zoom)) -
-        editor.precanvas.getBoundingClientRect().x *
-          (editor.precanvas.clientWidth /
-            (editor.precanvas.clientWidth * editor.zoom));
-      pos_y =
-        pos_y *
-          (editor.precanvas.clientHeight /
-            (editor.precanvas.clientHeight * editor.zoom)) -
-        editor.precanvas.getBoundingClientRect().y *
-          (editor.precanvas.clientHeight /
-            (editor.precanvas.clientHeight * editor.zoom));
-      switch (name) {
-        case "facebook":
-          var facebook = `
-        <div>
-          <div class="title-box"><i class="fab fa-facebook"></i> Facebook Message</div>
-        </div>
-        `;
-          editor.addNode("facebook",0,1,pos_x,pos_y,"facebook",{},facebook);
-          break;
-        case "slack":
-          var slackchat = `
-          <div>
-            <div class="title-box"><i class="fab fa-slack"></i> Slack chat message</div>
-          </div>
-          `;
-          editor.addNode("slack", 1, 0, pos_x, pos_y, "slack", {}, slackchat);
-          break;
-        default:
-      }
-    }
     // Events!
     editor.on("nodeCreated", function (id) {
       console.log("Node created " + id);
@@ -245,9 +138,20 @@ export default {
       console.log("Connection removed");
       console.log(connection);
     });
+
+    editor.on("nodeMoved", function (id) {
+      console.log("Node moved " + id);
+    });
+
+    editor.on("addReroute", function (id) {
+      console.log("Reroute added " + id);
+    });
+
+    editor.on("removeReroute", function (id) {
+      console.log("Reroute removed " + id);
+    });
   },
-  methods:{
-  },
+  methods: {},
   components: {
     FooterPag,
     HeaderPag,
@@ -257,12 +161,67 @@ export default {
 
 <style>
 .altura {
-  height: 410px;
+  height: 500px;
 }
-#drawflow {
-  display: block;
-  position: relative;
+.wrapper {
   width: 100%;
-  height: 800px;
+  height: calc(100vh - 67px);
+  display: flex;
 }
-</style>
+.drag-drawflow {
+  line-height: 50px;
+  border-bottom: 1px solid var(--border-color);
+  padding-left: 20px;
+  cursor: move;
+  user-select: none;
+}
+
+#drawflow {
+  position: relative;
+  width: calc(100vw - 301px);
+  height: calc(100% - 50px);
+  top: 40px;
+  background: var(--background-color);
+  background-size: 25px 25px;
+  background-image: linear-gradient(to right, #f1f1f1 1px, transparent 1px),
+    linear-gradient(to bottom, #f1f1f1 1px, transparent 1px);
+}
+.column {
+  overflow: auto;
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid var(--border-color);
+}
+.drag-drawflow {
+  line-height: 50px;
+  border-bottom: 1px solid var(--border-color);
+  padding-left: 20px;
+  cursor: move;
+  user-select: none;
+}
+.menu {
+  position: absolute;
+  height: 40px;
+  display: block;
+  background: white;
+  width: 100%;
+}
+.menu ul {
+  padding: 0px;
+  margin: 0px;
+  line-height: 40px;
+}
+
+.menu ul li {
+  display: inline-block;
+  margin-left: 10px;
+  border-right: 1px solid var(--border-color);
+  padding-right: 10px;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.menu ul li.selected {
+  font-weight: bold;
+}
+</style>  
